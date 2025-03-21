@@ -1,0 +1,53 @@
+﻿@model _2280600149_HoangAn3.Models.Category
+
+<div class="container mt-4">
+    <h2>Category Details</h2>
+
+    <div class="card">
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Category Name</dt>
+                <dd class="col-sm-9">@Model.Name</dd>
+
+                @* <dt class="col-sm-3">Number of Products</dt> *@
+                @* <dd class="col-sm-9">@(Model.Products?.Count ?? 0)</dd> *@
+            </dl>
+
+            @if (Model.Products != null && Model.Products.Any())
+            {
+                <div class="mt-4">
+                    <h4>Products in this Category</h4>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var product in Model.Products)
+                                {
+                                    <tr>
+                                        <td>@product.Name</td>
+                                        <td>@product.Price.ToString("C")</td>
+                                        <td>@product.Description</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="card-footer">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">
+                <i class="bi bi-pencil"></i> Edit
+            </a>
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Back to List
+            </a>
+        </div>
+    </div>
+</div>
